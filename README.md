@@ -14,7 +14,7 @@ Neste projeto, exploramos a aplicação de redes neurais para permitir que o din
 
 ## Como Jogar
 
-1. Execute o script `main.py` para iniciar o jogo.
+1. Execute o script `game.py` (se encontra no momento desse comit na pasta PY_IA) para iniciar o jogo.
 2. Assista ao dinossauro em ação, pulando sobre obstáculos automaticamente.
 
 ## Inspiração
