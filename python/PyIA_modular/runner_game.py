@@ -3,6 +3,7 @@ import random
 from player_keras import RunnerKeras
 import numpy as np
 import sys
+import os
 
 class RunnerGame:
     def __init__(self):
@@ -16,7 +17,8 @@ class RunnerGame:
 
         # Cores
         self.WHITE = (255, 255, 255)
-        self.BLACK = (0, 0, 0)
+        self.Black = (0, 0, 0)
+        self.Bk_color = (0, 0, 121)
 
         # Fonte
         self.font = pygame.font.Font(None, 36)
@@ -30,6 +32,7 @@ class RunnerGame:
         self.dino_jump_count = 11
         self.jump_impulse = 0  # Ajuste este valor conforme necessário
         self.jump = False
+        self.player_color = (255, 0, 255)
 
         # Obstáculos
         self.obstacle_width = 20
@@ -40,10 +43,22 @@ class RunnerGame:
         self.min_obstacle_distance = 50
         self.last_obstacle_time = 0
         self.seconds = 1.5
+        self.obstacle_color = (0, 0, 0)
 
         # Pontuação
         self.score = 130
 
+        current_dir = os.path.dirname(__file__)
+        print(current_dir)
+
+        # Especifique o caminho para o arquivo de fonte desejado (substitua 'caminho/para/sua/fonte.ttf' pelo caminho real)
+        self.font_path = os.path.join(current_dir, 'Consolas-Font', 'CONSOLAS.ttf')
+
+        # Defina o tamanho da fonte desejado
+        self.font_size = 24
+
+
+        
         # Inicialização do modelo Keras
         self.keras_model = RunnerKeras()
 
@@ -83,6 +98,8 @@ class RunnerGame:
         pygame.display.set_caption("Dino Runner")
         clock = pygame.time.Clock()
         screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
+        custom_font = pygame.font.Font(self.font_path, self.font_size)
+
 
         while True:
             for event in pygame.event.get():
@@ -127,13 +144,13 @@ class RunnerGame:
                     self.dino_jump = True
 
             # Desenha o fundo
-            screen.fill(self.BLACK)
+            screen.fill(self.Bk_color)
 
             # Desenha o dinossauro e obstáculos
-            pygame.draw.rect(screen, self.WHITE, [self.dino_x, self.dino_y, self.dino_width, self.dino_height])
+            pygame.draw.rect(screen, self.player_color, [self.dino_x, self.dino_y, self.dino_width, self.dino_height])
 
             for obstacle in self.obstacles:
-                pygame.draw.rect(screen, self.WHITE, obstacle)
+                pygame.draw.rect(screen, self.obstacle_color, obstacle)
                 if self.dino_x < obstacle.x + obstacle.width and self.dino_x + self.dino_width > obstacle.x:
                     print("Dino pulou sobre um obstáculo!")
                     self.score += 10
@@ -143,8 +160,10 @@ class RunnerGame:
                 
 
             # Renderiza os pesos na tela
-            weights_text = f'Peso para pular: {prediction:.2f} | Peso para não pular: {1 - prediction:.2f} | Pontos: {self.score:.2f} '
-            weights_render = self.font.render(weights_text, True, self.WHITE)
+            weights_text  = f'Peso para pular: {prediction:.2f} | '
+            weights_text += f'Peso para não pular: {1 - prediction:.2f} |' 
+            weights_text += f'Pontos: {self.score:.2f} |'
+            weights_render = custom_font.render(weights_text, True, self.WHITE)
             screen.blit(weights_render, (10, 10))
             n = float(random.randint(20,40))/10
             self.seconds = n 

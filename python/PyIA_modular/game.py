@@ -7,7 +7,7 @@ from runner_game import RunnerGame
 def main():
     pygame.init()
     game = RunnerGame()
-
+    
     X_train = []
     y_train = []
 
