@@ -35,8 +35,8 @@ class RunnerGame:
         self.player_color = (255, 0, 255)
 
         # Obstáculos
-        self.obstacle_width = 20
-        self.obstacle_height = 50
+        self.obstacle_width = random.randint(40, 60)
+        self.obstacle_height = random.randint(100, 150)
         self.obstacle_speed = 20
         self.obstacle_frequency = 500
         self.obstacles = []
@@ -112,6 +112,11 @@ class RunnerGame:
 
             self.generate_obstacle()
 
+            obstacle_width_changer = random.randint(40, 60)
+            obstacle_heitght_changer = random.randint(100, 150)
+            self.obstacle_width = obstacle_width_changer
+            self.obstacle_height = obstacle_heitght_changer
+
             # Move obstáculos
             for obstacle in self.obstacles:
                 obstacle.x -= self.obstacle_speed
@@ -128,8 +133,7 @@ class RunnerGame:
 
             # Atualiza pontuação
             self.score -= 0.5
-            obstacle_height = 50
-            obstacle_width = 10
+
             obstacle_x = self.WIDTH - self.obstacle_width
             distance_to_obstacle = obstacle_x - self.dino_x
             # Obtém o estado do jogo
