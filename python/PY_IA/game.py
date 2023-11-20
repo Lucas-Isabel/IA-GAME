@@ -40,14 +40,9 @@ def main():
     # Salvando o modelo treinado ao final dos episódios
     game.keras_model.model.save("runner_model.h5")
 
-    # Verifica se o modelo é melhor e, se for, salva como "best_runner.h5"
-    """if os.path.exists("best_runner.h5"):
-        best_model_score = game.keras_model.evaluate_best_model()
-        current_model_score = game.keras_model.evaluate_current_model()
+    """Criar metodo para verificar se o modelo é melhor e, se for, salva como "best_runner.h5, 
+    manual por enquanto"""
 
-        if current_model_score > best_model_score:
-            os.remove("best_runner.h5")
-            os.rename("runner_model.h5", "best_runner.h5")"""
 
     game.run()
 
