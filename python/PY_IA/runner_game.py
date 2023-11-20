@@ -30,7 +30,7 @@ class RunnerGame:
         self.dino_y = self.HEIGHT - self.dino_height
         self.dino_jump = False
         self.dino_jump_count = 11
-        self.jump_impulse = 0  # Ajuste este valor conforme necessário
+        self.jump_impulse = 0  
         self.jump = False
         self.player_color = (255, 0, 255)
 
