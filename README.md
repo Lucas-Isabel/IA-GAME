@@ -9,7 +9,7 @@ Neste projeto, exploramos a aplicação de redes neurais para permitir que o din
 ## Funcionalidades
 
 - **Jogo Infinito:** Corra o máximo que puder enquanto enfrenta obstáculos aleatórios.
-- **Rede Neural:** O dinossauro toma decisões com base em uma rede neural treinada.
+- **Rede Neural:** O passaro toma decisões com base em uma rede neural treinada.
 - **Treinamento Automático:** A rede neural é treinada automaticamente para melhorar suas habilidades.
 
 ## Como Jogar
